@@ -1,0 +1,21 @@
+[build]
+  command = "vite build"
+  publish = "dist/client"
+
+[functions]
+  directory = "netlify/functions"
+
+[dev]
+  command = "npm run dev"
+  targetPort = 3000
+  port = 8888
+
+# Checkout privado: sem indexação e com cabeçalhos de segurança em todas as páginas.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Robots-Tag = "noindex, nofollow"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
